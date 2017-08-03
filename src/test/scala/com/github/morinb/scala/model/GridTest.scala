@@ -81,9 +81,6 @@ class GridTest extends FunSuite {
     g = g.play(BOTTOM_RIGHT, Circle)
     assert(g.isFull)
 
-
-
-
   }
 
   test("Empty type toString is Space") {

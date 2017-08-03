@@ -38,11 +38,15 @@ case class Grid(lastPlayer: Cell = Empty, grid: List[Cell] = List(Empty, Empty, 
     Set(TOP_RIGHT, MIDDLE_MIDDLE, BOTTOM_LEFT)
   )
 
+  def emptyCells() : List[CellCoordinate] = {
+    COORDINATES.filter(cc => this(cc) == Empty)
+  }
+
   def winner(): Option[Set[CellCoordinate]] = {
     (for {
       possibleWin <- CHECKS
       if possibleWin.map(cc => this (cc)).size == 1
-    } yield possibleWin).headOption
+    } yield possibleWin).find(s => this(s.head) != Empty)
   }
 
   def isFull: Boolean = {
