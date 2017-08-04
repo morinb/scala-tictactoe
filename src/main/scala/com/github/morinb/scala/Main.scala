@@ -1,7 +1,7 @@
 package com.github.morinb.scala
 
 import com.github.morinb.scala.engine.{DummyEngine, Engine}
-import com.github.morinb.scala.model.{Circle, Cross, Grid}
+import com.github.morinb.scala.model.{Circle, Cross, Empty, Grid}
 
 object Main {
 
@@ -18,10 +18,11 @@ object Main {
       currentEngine = currentEngine.player match {
         case Circle => engineCross
         case Cross => engineCircle
+        case Empty => throw new IllegalArgumentException // Should never occur
       }
     }
     grid.winner() match {
-      case Some(s) => println(grid(s.head)+ " WINS !")
+      case Some(s) => println(grid(s.head) + " WINS !")
       case None => println("It's a DRAW")
     }
   }
